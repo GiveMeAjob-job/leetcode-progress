@@ -4,16 +4,16 @@ Welcome to my LeetCode progress tracker! This repository automatically updates e
 
 ## LeetCode Progress
 
-- **Total Solved**: 
+- **Total Solved**: ![Progress](./images/total_solved.svg)
   ![Progress](./images/total_solved.svg)
 
-- **Easy**: 
+- **Easy**: ![Progress](./images/easy_solved.svg)
   ![Progress](./images/easy_solved.svg)
 
-- **Medium**: 
+- **Medium**: ![Progress](./images/medium_solved.svg)
   ![Progress](./images/medium_solved.svg)
 
-- **Hard**: 
+- **Hard**: ![Progress](./images/hard_solved.svg)
   ![Progress](./images/hard_solved.svg)
 
 ### How This Works
