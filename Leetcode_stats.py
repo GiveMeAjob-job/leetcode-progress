@@ -33,7 +33,7 @@ def update_readme(data):
         file.writelines(new_content)
 
 if __name__ == "__main__":
-    username = "GiveMeAjob-job"  # LeetCode 用户名
+    username = "GiveMeAJob9"  # LeetCode ID
     progress = get_leetcode_progress(username)
     if progress:
         update_readme(progress)
