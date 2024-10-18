@@ -1,5 +1,6 @@
 import requests
 import matplotlib.pyplot as plt
+import numpy as np
 import os
 
 def get_leetcode_progress(username):
@@ -20,13 +21,24 @@ def get_leetcode_progress(username):
         return None
 
 def generate_progress_bar(solved, total, title, color, filename):
-    """生成一个水平进度条图像"""
-    fig, ax = plt.subplots(figsize=(6, 1))
-    ax.barh([0], [solved], color=color, height=0.3)
-    ax.set_xlim(0, total)
-    ax.set_title(f"{title}: {solved}/{total}")
-    ax.set_xticks([])
-    ax.set_yticks([])
+    """生成一个紧凑的水平进度条图像"""
+    fig, ax = plt.subplots(figsize=(4, 0.4))  # 更加紧凑的大小
+    percentage = solved / total if total > 0 else 0
+
+    # 生成进度条
+    ax.barh([0], [percentage], color=color, height=0.5)
+
+    # 设置进度条背景
+    ax.barh([0], [1], color='#f0f0f0', height=0.5, zorder=-1)
+
+    # 添加文字标签，显示当前进度和总数
+    ax.text(percentage / 2, 0, f"{solved}/{total}", va='center', ha='center', color='white', fontsize=10)
+    
+    # 删除多余的边框和坐标轴
+    ax.set_xlim(0, 1)
+    ax.axis('off')
+
+    # 保存图片
     plt.savefig(filename, bbox_inches='tight', pad_inches=0.1)
     plt.close()
 
