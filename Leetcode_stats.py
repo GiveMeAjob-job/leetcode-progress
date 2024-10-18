@@ -1,4 +1,6 @@
 import requests
+import matplotlib.pyplot as plt
+import os
 
 def get_leetcode_progress(username):
     url = f"https://leetcode-stats-api.herokuapp.com/{username}"
@@ -17,7 +19,29 @@ def get_leetcode_progress(username):
         print(f"Error fetching data from LeetCode API: {e}")
         return None
 
+def generate_progress_bar(solved, total, title, color, filename):
+    """生成一个水平进度条图像"""
+    fig, ax = plt.subplots(figsize=(6, 1))
+    ax.barh([0], [solved], color=color, height=0.3)
+    ax.set_xlim(0, total)
+    ax.set_title(f"{title}: {solved}/{total}")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    plt.savefig(filename, bbox_inches='tight', pad_inches=0.1)
+    plt.close()
+
 def update_readme(data):
+    # 生成图像的保存路径
+    image_dir = "images"
+    if not os.path.exists(image_dir):
+        os.makedirs(image_dir)
+
+    # 生成各类进度条图像
+    generate_progress_bar(data['totalSolved'], data['totalQuestions'], "Total Solved", "gray", os.path.join(image_dir, "total_solved.png"))
+    generate_progress_bar(data['easySolved'], data['totalEasy'], "Easy", "green", os.path.join(image_dir, "easy_solved.png"))
+    generate_progress_bar(data['mediumSolved'], data['totalMedium'], "Medium", "orange", os.path.join(image_dir, "medium_solved.png"))
+    generate_progress_bar(data['hardSolved'], data['totalHard'], "Hard", "red", os.path.join(image_dir, "hard_solved.png"))
+
     # 读取当前的 README.md 内容
     with open("README.md", "r") as file:
         readme_content = file.readlines()
@@ -26,14 +50,13 @@ def update_readme(data):
     new_content = []
     for line in readme_content:
         if "Total Solved" in line:
-            line = f"- **Total Solved**: {data['totalSolved']} / {data['totalQuestions']}\n"
+            line = "- **Total Solved**: ![Progress](./images/total_solved.png)\n"
         elif "Easy" in line:
-            line = f"- **Easy**: {data['easySolved']} / {data['totalEasy']}\n"
+            line = "- **Easy**: ![Progress](./images/easy_solved.png)\n"
         elif "Medium" in line:
-            line = f"- **Medium**: {data['mediumSolved']} / {data['totalMedium']}\n"
+            line = "- **Medium**: ![Progress](./images/medium_solved.png)\n"
         elif "Hard" in line:
-            line = f"- **Hard**: {data['hardSolved']} / {data['totalHard']}\n"
-        
+            line = "- **Hard**: ![Progress](./images/hard_solved.png)\n"
         new_content.append(line)
 
     # 仅当内容有变化时才更新 README.md
