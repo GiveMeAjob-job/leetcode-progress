@@ -1,25 +1,25 @@
 name: Update LeetCode Progress
-
 # 定时触发的时间设定，这里设定为每天的UTC 0点自动触发
+
 on:
   schedule:
-    - cron: "0 0 * * *"
-
+    - cron: "*/5 * * * *"
+  workflow_dispatch:  # 添加手动触发
 
 jobs:
   update-progress:
-    runs-on: ubuntu-latest  # 选择运行环境
+    runs-on: ubuntu-latest   # 选择运行环境
 
-    steps:
       # Step 1: 检出代码仓库
-      - name: Checkout repository
+    steps:
+      - name: Checkout repository 
         uses: actions/checkout@v2
 
       # Step 2: 设置 Python 环境
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # 使用 Python 3.x 版本
+          python-version: '3.x'
 
       # Step 3: 安装依赖
       - name: Install dependencies
@@ -29,15 +29,16 @@ jobs:
       # Step 4: 运行抓取 LeetCode 进度的脚本
       - name: Run LeetCode Progress Script
         run: |
-          python leetcode-progress/Leetcode_stats.py  # 使用正确的相对路径
+          python leetcode-progress/Leetcode_stats.py  # 确保路径正确
 
       # Step 5: 提交并推送更新后的 README.md 文件
-      - name: Commit and push changes
+      - name: Commit and push changes  # 添加 GitHub Token 以便推送权限
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ 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 }}
         run: |
           git config --global user.name 'GiveMeAjob-job'
           git config --global user.email 'binjob9@gmail.com'
           git add README.md
           git commit -m "Update LeetCode progress"
           git push
+
