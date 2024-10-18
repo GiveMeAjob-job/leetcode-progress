@@ -34,7 +34,7 @@ jobs:
       # Step 5: 提交并推送更新后的 README.md 文件
       - name: Commit and push changes  # 添加 GitHub Token 以便推送权限
         env:
-          GITHUB_TOKEN: ${{ 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 }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 正确的 GitHub Token 使用方法
         run: |
           git config --global user.name 'GiveMeAjob-job'
           git config --global user.email 'binjob9@gmail.com'
