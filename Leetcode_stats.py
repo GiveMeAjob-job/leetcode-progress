@@ -8,7 +8,7 @@ def get_leetcode_progress(username):
         response.raise_for_status()
         data = response.json()
 
-        # 检查是否返回错误状态
+        # Check if there's an error status
         if data.get("status") == "error":
             print(f"Error: {data.get('message')}")
             return None
@@ -37,17 +37,17 @@ def generate_html_progress_bar(solved, total, title, color):
     '''
 
 def update_readme(data):
-    # 生成各类进度条的 HTML
+    # Generate the HTML progress bars for each difficulty
     total_solved_html = generate_html_progress_bar(data['totalSolved'], data['totalQuestions'], "Total Solved", "green")
     easy_solved_html = generate_html_progress_bar(data['easySolved'], data['totalEasy'], "Easy", "lightgreen")
     medium_solved_html = generate_html_progress_bar(data['mediumSolved'], data['totalMedium'], "Medium", "orange")
     hard_solved_html = generate_html_progress_bar(data['hardSolved'], data['totalHard'], "Hard", "red")
 
-    # 读取当前的 README.md 内容
+    # Read the current README.md content
     with open("README.md", "r") as file:
         readme_content = file.readlines()
 
-    # 更新 README.md 内容
+    # Update the README.md content with new progress bars
     new_content = []
     for line in readme_content:
         if "Total Solved" in line:
@@ -60,7 +60,7 @@ def update_readme(data):
             line = f"- **Hard**: {hard_solved_html}\n"
         new_content.append(line)
 
-    # 仅当内容有变化时才更新 README.md
+    # Update README.md only if content has changed
     if new_content != readme_content:
         with open("README.md", "w") as file:
             file.writelines(new_content)
@@ -69,12 +69,13 @@ def update_readme(data):
         print("No changes made to README.md.")
 
 if __name__ == "__main__":
-    username = "GiveMeAJob9"  # 使用LeetCode用户ID
+    username = "GiveMeAJob9"  # Your LeetCode username here
     progress = get_leetcode_progress(username)
 
     if progress:
         update_readme(progress)
-        print(f"Fetched data: {progress}")  # 打印获取到的数据
+        print(f"Fetched data: {progress}")  # Print fetched data for verification
     else:
         print("Failed to fetch LeetCode data.")
+
 
