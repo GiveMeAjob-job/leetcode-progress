@@ -29,7 +29,7 @@ jobs:
       # Step 4: 运行抓取 LeetCode 进度的脚本
       - name: Run LeetCode Progress Script
         run: |
-          python leetcode_stats.py  # 运行你刚才编写的 Python 脚本
+          python leetcode-progress/Leetcode_stats.py  # 使用正确的相对路径
 
       # Step 5: 提交并推送更新后的 README.md 文件
       - name: Commit and push changes
