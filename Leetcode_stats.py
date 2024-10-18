@@ -22,22 +22,27 @@ def update_readme(data):
     with open("README.md", "r") as file:
         readme_content = file.readlines()
 
-    # 更新内容
+    # 更新 README.md 内容
     new_content = []
     for line in readme_content:
         if "Total Solved" in line:
-    line = f"- **Total Solved**: {data['totalSolved']} / {data['totalQuestions']}\n"
-        if "Easy" in line:
-    line = f"- **Easy**: {data['easySolved']} / {data['totalEasy']}\n"
-        if "Medium" in line:
-    line = f"- **Medium**: {data['mediumSolved']} / {data['totalMedium']}\n"
-        if "Hard" in line:
-    line = f"- **Hard**: {data['hardSolved']} / {data['totalHard']}\n"
+            line = f"- **Total Solved**: {data['totalSolved']} / {data['totalQuestions']}\n"
+        elif "Easy" in line:
+            line = f"- **Easy**: {data['easySolved']} / {data['totalEasy']}\n"
+        elif "Medium" in line:
+            line = f"- **Medium**: {data['mediumSolved']} / {data['totalMedium']}\n"
+        elif "Hard" in line:
+            line = f"- **Hard**: {data['hardSolved']} / {data['totalHard']}\n"
+        
         new_content.append(line)
 
-    # 写回更新后的内容到 README.md
-    with open("README.md", "w") as file:
-        file.writelines(new_content)
+    # 仅当内容有变化时才更新 README.md
+    if new_content != readme_content:
+        with open("README.md", "w") as file:
+            file.writelines(new_content)
+        print("README.md updated successfully.")
+    else:
+        print("No changes made to README.md.")
 
 if __name__ == "__main__":
     username = "GiveMeAJob9"  # 使用LeetCode用户ID
@@ -45,7 +50,7 @@ if __name__ == "__main__":
 
     if progress:
         update_readme(progress)
-        print(f"Fetched data: {progress}")  # 在最后打印获取到的数据
+        print(f"Fetched data: {progress}")  # 打印获取到的数据
     else:
         print("Failed to fetch LeetCode data.")
 
