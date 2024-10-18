@@ -8,7 +8,7 @@ def get_leetcode_progress(username):
         response.raise_for_status()
         data = response.json()
 
-        # Check for error status
+        # Check if there's an error status
         if data.get("status") == "error":
             print(f"Error: {data.get('message')}")
             return None
@@ -62,17 +62,17 @@ def update_readme(data):
     with open("README.md", "r") as file:
         readme_content = file.readlines()
 
-    # Update README.md content with SVGs
+    # Update README.md content with both SVG and textual stats
     new_content = []
     for line in readme_content:
         if "Total Solved" in line:
-            line = f"- **Total Solved**: ![Progress](./images/total_solved.svg)\n"
+            line = f"- **Total Solved**: ![Progress](./images/total_solved.svg)\n  - **{data['totalSolved']} / {data['totalQuestions']}** solved problems\n"
         elif "Easy" in line:
-            line = f"- **Easy**: ![Progress](./images/easy_solved.svg)\n"
+            line = f"- **Easy**: ![Progress](./images/easy_solved.svg)\n  - **{data['easySolved']} / {data['totalEasy']}** easy problems solved\n"
         elif "Medium" in line:
-            line = f"- **Medium**: ![Progress](./images/medium_solved.svg)\n"
+            line = f"- **Medium**: ![Progress](./images/medium_solved.svg)\n  - **{data['mediumSolved']} / {data['totalMedium']}** medium problems solved\n"
         elif "Hard" in line:
-            line = f"- **Hard**: ![Progress](./images/hard_solved.svg)\n"
+            line = f"- **Hard**: ![Progress](./images/hard_solved.svg)\n  - **{data['hardSolved']} / {data['totalHard']}** hard problems solved\n"
         new_content.append(line)
 
     # Write updated content back to README.md
@@ -92,4 +92,5 @@ if __name__ == "__main__":
         print(f"Fetched data: {progress}")  # Print fetched data for debugging
     else:
         print("Failed to fetch LeetCode data.")
+
 
