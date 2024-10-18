@@ -1,0 +1,42 @@
+name: Update LeetCode Progress
+
+# 定时触发的时间设定，这里设定为每天的UTC 0点自动触发
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    workflow_dispatch:  # 手动触发
+
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest  # 选择运行环境
+
+    steps:
+      # Step 1: 检出代码仓库
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: 设置 Python 环境
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # 使用 Python 3.x 版本
+
+      # Step 3: 安装依赖
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      # Step 4: 运行抓取 LeetCode 进度的脚本
+      - name: Run LeetCode Progress Script
+        run: |
+          python leetcode_stats.py  # 运行你刚才编写的 Python 脚本
+
+      # Step 5: 提交并推送更新后的 README.md 文件
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'your_github_username'
+          git config --global user.email 'your_email@example.com'
+          git add README.md
+          git commit -m "Update LeetCode progress"
+          git push
