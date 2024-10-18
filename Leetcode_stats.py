@@ -49,10 +49,11 @@ def update_readme(data):
         os.makedirs(image_dir)
 
     # 生成各类进度条图像
-    generate_progress_bar(data['totalSolved'], data['totalQuestions'], "Total Solved", "gray", os.path.join(image_dir, "total_solved.png"))
-    generate_progress_bar(data['easySolved'], data['totalEasy'], "Easy", "green", os.path.join(image_dir, "easy_solved.png"))
-    generate_progress_bar(data['mediumSolved'], data['totalMedium'], "Medium", "orange", os.path.join(image_dir, "medium_solved.png"))
-    generate_progress_bar(data['hardSolved'], data['totalHard'], "Hard", "red", os.path.join(image_dir, "hard_solved.png"))
+    generate_progress_bar(1, 3323, "Total Solved", "green", "images/total_solved.png")
+    generate_progress_bar(1, 830, "Easy", "lightgreen", "images/easy_solved.png")
+    generate_progress_bar(0, 1738, "Medium", "orange", "images/medium_solved.png")
+    generate_progress_bar(0, 755, "Hard", "red", "images/hard_solved.png")
+
 
     # 读取当前的 README.md 内容
     with open("README.md", "r") as file:
