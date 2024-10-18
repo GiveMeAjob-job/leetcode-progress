@@ -2,11 +2,19 @@ import requests
 
 def get_leetcode_progress(username):
     url = f"https://leetcode-stats-api.herokuapp.com/{username}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"Error fetching data for {username}")
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+
+        # 检查是否返回错误状态
+        if data.get("status") == "error":
+            print(f"Error: {data.get('message')}")
+            return None
+        
+        return data
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data from LeetCode API: {e}")
         return None
 
 def update_readme(data):
@@ -33,7 +41,12 @@ def update_readme(data):
         file.writelines(new_content)
 
 if __name__ == "__main__":
-    username = "GiveMeAJob9"  # LeetCode ID
+    username = "GiveMeAJob9"  # 使用LeetCode用户ID
     progress = get_leetcode_progress(username)
+
     if progress:
         update_readme(progress)
+        print(f"Fetched data: {progress}")  # 在最后打印获取到的数据
+    else:
+        print("Failed to fetch LeetCode data.")
+
