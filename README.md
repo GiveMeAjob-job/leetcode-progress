@@ -1,28 +1,6 @@
-name: Update LeetCode Stats
+## LeetCode Progress
 
-on:
-  schedule:
-    # 每天 UTC 时间晚上 12 点自动更新
-    - cron: "0 0 * * *"
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: pip install requests
-      - name: Run LeetCode Progress Update Script
-        run: |
-          python your_script.py
-      - name: Commit results
-        run: |
-          git config --global user.name 'your_github_username'
-          git config --global user.email 'your_email@example.com'
-          git add .
-          git commit -m 'Update LeetCode progress'
-          git push
+- **Total Solved**: ![Progress](https://progress-bar.dev/200/?scale=500&title=solved&width=200&color=babaca)
+- **Easy**: ![Progress](https://progress-bar.dev/150/?scale=200&title=easy&width=200&color=green)
+- **Medium**: ![Progress](https://progress-bar.dev/80/?scale=150&title=medium&width=200&color=orange)
+- **Hard**: ![Progress](https://progress-bar.dev/30/?scale=50&title=hard&width=200&color=red)
