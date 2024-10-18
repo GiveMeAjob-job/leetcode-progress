@@ -1,6 +1,8 @@
-## LeetCode Progress
-
-- **Total Solved**: ![Progress](https://progress-bar.dev/1/?scale=500&title=solved&width=200&color=babaca)
-- **Easy**: ![Progress](https://progress-bar.dev/1/?scale=200&title=easy&width=200&color=green)
-- **Medium**: ![Progress](https://progress-bar.dev/0/?scale=150&title=medium&width=200&color=orange)
-- **Hard**: ![Progress](https://progress-bar.dev/0/?scale=50&title=hard&width=200&color=red)
+if "Total Solved" in line:
+    line = f"- **Total Solved**: {data['totalSolved']} / {data['totalQuestions']}\n"
+if "Easy" in line:
+    line = f"- **Easy**: {data['easySolved']} / {data['totalEasy']}\n"
+if "Medium" in line:
+    line = f"- **Medium**: {data['mediumSolved']} / {data['totalMedium']}\n"
+if "Hard" in line:
+    line = f"- **Hard**: {data['hardSolved']} / {data['totalHard']}\n"
