@@ -1,6 +1,4 @@
 import requests
-import matplotlib.pyplot as plt
-import numpy as np
 import os
 
 def get_leetcode_progress(username):
@@ -20,40 +18,30 @@ def get_leetcode_progress(username):
         print(f"Error fetching data from LeetCode API: {e}")
         return None
 
-def generate_progress_bar(solved, total, title, color, filename):
-    """生成一个紧凑的水平进度条图像"""
-    fig, ax = plt.subplots(figsize=(4, 0.4))  # 更加紧凑的大小
-    percentage = solved / total if total > 0 else 0
+def generate_html_progress_bar(solved, total, title, color):
+    percentage = solved / total * 100 if total > 0 else 0
+    return f'''
+    <div style="width: 100%; background-color: #333; border-radius: 10px; overflow: hidden; box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.7); margin-bottom: 10px;">
+        <div style="width: {percentage}%; height: 20px; background: linear-gradient(90deg, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0.6), rgba(0, 255, 255, 1)); animation: glowing 2s infinite; border-radius: 10px; text-align: center; line-height: 20px; color: white;">
+            {solved}/{total}
+        </div>
+    </div>
 
-    # 生成进度条
-    ax.barh([0], [percentage], color=color, height=0.5)
-
-    # 设置进度条背景
-    ax.barh([0], [1], color='#f0f0f0', height=0.5, zorder=-1)
-
-    # 添加文字标签，显示当前进度和总数
-    ax.text(percentage / 2, 0, f"{solved}/{total}", va='center', ha='center', color='white', fontsize=10)
-    
-    # 删除多余的边框和坐标轴
-    ax.set_xlim(0, 1)
-    ax.axis('off')
-
-    # 保存图片
-    plt.savefig(filename, bbox_inches='tight', pad_inches=0.1)
-    plt.close()
+    <style>
+    @keyframes glowing {{
+        0% {{ box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); }}
+        50% {{ box-shadow: 0 0 15px rgba(0, 255, 255, 0.9); }}
+        100% {{ box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); }}
+    }}
+    </style>
+    '''
 
 def update_readme(data):
-    # 生成图像的保存路径
-    image_dir = "images"
-    if not os.path.exists(image_dir):
-        os.makedirs(image_dir)
-
-    # 生成各类进度条图像
-    generate_progress_bar(1, 3323, "Total Solved", "green", "images/total_solved.png")
-    generate_progress_bar(1, 830, "Easy", "lightgreen", "images/easy_solved.png")
-    generate_progress_bar(0, 1738, "Medium", "orange", "images/medium_solved.png")
-    generate_progress_bar(0, 755, "Hard", "red", "images/hard_solved.png")
-
+    # 生成各类进度条的 HTML
+    total_solved_html = generate_html_progress_bar(data['totalSolved'], data['totalQuestions'], "Total Solved", "green")
+    easy_solved_html = generate_html_progress_bar(data['easySolved'], data['totalEasy'], "Easy", "lightgreen")
+    medium_solved_html = generate_html_progress_bar(data['mediumSolved'], data['totalMedium'], "Medium", "orange")
+    hard_solved_html = generate_html_progress_bar(data['hardSolved'], data['totalHard'], "Hard", "red")
 
     # 读取当前的 README.md 内容
     with open("README.md", "r") as file:
@@ -63,13 +51,13 @@ def update_readme(data):
     new_content = []
     for line in readme_content:
         if "Total Solved" in line:
-            line = "- **Total Solved**: ![Progress](./images/total_solved.png)\n"
+            line = f"- **Total Solved**: {total_solved_html}\n"
         elif "Easy" in line:
-            line = "- **Easy**: ![Progress](./images/easy_solved.png)\n"
+            line = f"- **Easy**: {easy_solved_html}\n"
         elif "Medium" in line:
-            line = "- **Medium**: ![Progress](./images/medium_solved.png)\n"
+            line = f"- **Medium**: {medium_solved_html}\n"
         elif "Hard" in line:
-            line = "- **Hard**: ![Progress](./images/hard_solved.png)\n"
+            line = f"- **Hard**: {hard_solved_html}\n"
         new_content.append(line)
 
     # 仅当内容有变化时才更新 README.md
