@@ -6,6 +6,7 @@ Welcome to my LeetCode progress tracker! This repository automatically updates e
 
 - **Total Solved**: ![Progress](./images/total_solved.svg)
   - **2 / 3323** solved problems
+  - **2 / 3323** solved problems
   - **1 / 3323** solved problems
   - **1 / 3323** solved problems
   
@@ -15,10 +16,12 @@ Welcome to my LeetCode progress tracker! This repository automatically updates e
   - **1 / 830** easy problems solved
   - **1 / 830** easy problems solved
   - **1 / 830** easy problems solved
+  - **1 / 830** easy problems solved
   
   ![Progress](./images/easy_solved.svg)
 
 - **Medium**: ![Progress](./images/medium_solved.svg)
+  - **1 / 1738** medium problems solved
   - **1 / 1738** medium problems solved
   - **0 / 1738** medium problems solved
   - **0 / 1738** medium problems solved
@@ -26,6 +29,7 @@ Welcome to my LeetCode progress tracker! This repository automatically updates e
   ![Progress](./images/medium_solved.svg)
 
 - **Hard**: ![Progress](./images/hard_solved.svg)
+  - **0 / 755** hard problems solved
   - **0 / 755** hard problems solved
   - **0 / 755** hard problems solved
   - **0 / 755** hard problems solved
