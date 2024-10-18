@@ -39,6 +39,7 @@ jobs:
         run: |
           git config --global user.name 'GiveMeAjob-job'
           git config --global user.email 'binjob9@gmail.com'
+          git add . 
           git add README.md
           git commit -m "Update LeetCode progress"
           git push
