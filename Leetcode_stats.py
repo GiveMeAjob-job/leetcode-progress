@@ -26,14 +26,13 @@ def update_readme(data):
     new_content = []
     for line in readme_content:
         if "Total Solved" in line:
-            line = f"- **Total Solved**: ![Progress](https://progress-bar.dev/{data['totalSolved']}/?scale=500&title=solved&width=200&color=babaca)\n"
-        elif "Easy" in line:
-            line = f"- **Easy**: ![Progress](https://progress-bar.dev/{data['easySolved']}/?scale=200&title=easy&width=200&color=green)\n"
-        elif "Medium" in line:
-            line = f"- **Medium**: ![Progress](https://progress-bar.dev/{data['mediumSolved']}/?scale=150&title=medium&width=200&color=orange)\n"
-        elif "Hard" in line:
-            line = f"- **Hard**: ![Progress](https://progress-bar.dev/{data['hardSolved']}/?scale=50&title=hard&width=200&color=red)\n"
-        
+    line = f"- **Total Solved**: {data['totalSolved']} / {data['totalQuestions']}\n"
+        if "Easy" in line:
+    line = f"- **Easy**: {data['easySolved']} / {data['totalEasy']}\n"
+        if "Medium" in line:
+    line = f"- **Medium**: {data['mediumSolved']} / {data['totalMedium']}\n"
+        if "Hard" in line:
+    line = f"- **Hard**: {data['hardSolved']} / {data['totalHard']}\n"
         new_content.append(line)
 
     # 写回更新后的内容到 README.md
