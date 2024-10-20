@@ -73,15 +73,13 @@ def update_readme(data):
             line = f"- **Medium**: ![Progress](./images/medium_solved.svg)\n  - **{data['mediumSolved']} / {data['totalMedium']}** medium problems solved\n"
         elif "Hard" in line:
             line = f"- **Hard**: ![Progress](./images/hard_solved.svg)\n  - **{data['hardSolved']} / {data['totalHard']}** hard problems solved\n"
-        new_content.append(line)
+        else:
+            new_content.append(line)
 
     # Write updated content back to README.md
-    if new_content != readme_content:
-        with open("README.md", "w") as file:
-            file.writelines(new_content)
-        print("README.md updated successfully.")
-    else:
-        print("No changes made to README.md.")
+    with open("README.md", "w") as file:
+        file.writelines(new_content)
+    print("README.md updated successfully.")
 
 if __name__ == "__main__":
     username = "GiveMeAJob9"  # Your LeetCode username
@@ -92,5 +90,4 @@ if __name__ == "__main__":
         print(f"Fetched data: {progress}")  # Print fetched data for debugging
     else:
         print("Failed to fetch LeetCode data.")
-
 
