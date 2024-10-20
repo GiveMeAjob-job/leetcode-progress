@@ -19,7 +19,7 @@ Welcome to my LeetCode progress tracker! This repository automatically updates e
 
 ### More Information
 
-You can view more details of my LeetCode solutions on [LeetCode](https://leetcode.com/GiveMeJob9/).
+You can view more details of my LeetCode solutions on [LeetCode](https://leetcode.com/GiveMeAJob9/).
 
 Feel free to explore my GitHub repositories for more coding projects and solutions!
 
