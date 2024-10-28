@@ -12,12 +12,12 @@
                 }
                 @keyframes glowing {
                     0%, 100% { width: 0; }
-                    50% { width: 0.17201834862385323%; }
+                    50% { width: 0.1718213058419244%; }
                 }
             </style>
         </defs>
         <rect x="0" y="0" width="100%" height="10" fill="#ccc" />
-        <rect x="0" y="0" class="progress-bar" height="10" width="0.17201834862385323%" />
-        <text x="50%" y="25" font-size="12" text-anchor="middle" fill="#fff">3/1744 Medium</text>
+        <rect x="0" y="0" class="progress-bar" height="10" width="0.1718213058419244%" />
+        <text x="50%" y="25" font-size="12" text-anchor="middle" fill="#fff">3/1746 Medium</text>
     </svg>
     
