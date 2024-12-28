@@ -1,27 +1,56 @@
 # My LeetCode Journey
 
-Welcome to my LeetCode progress tracker! This repository automatically updates every day to track my problem-solving journey on LeetCode.
+<div align="center">
+  <img src="https://img.shields.io/badge/Author-GiveMeAJob9-blue" alt="Author Badge"/>
+  <img src="https://img.shields.io/github/followers/GiveMeAJob-job?style=social" alt="GitHub Followers"/>
+  <img src="https://img.shields.io/badge/LeetCode-Solutions-orange" alt="LeetCode Badge"/>
+</div>
 
-## LeetCode Progress
+---
 
-  - **1 / 3323** solved problems
+## Introduction
 
-  - **1 / 830** easy problems solved
+Hello! I'm **GiveMeAJob9**, welcome to my LeetCode progress tracker. I solve coding challenges to enhance my algorithmic thinking and problem-solving skills. 
 
-  - **0 / 1738** medium problems solved
+## Current Progress
 
-  - **0 / 755** hard problems solved
+<!-- LEETCODE_STATS:START -->
+<!-- 这里的内容会被 LeetCode Stats 脚本自动替换 -->
+<!-- LEETCODE_STATS:END -->
 
-### How This Works
+> **Note**: The stats are updated automatically every day at **00:00 (UTC)** via GitHub Actions.
 
-- Every day, my GitHub Actions workflow fetches my latest LeetCode stats and updates this README with dynamic SVG-based progress bars.
-- The progress bars reflect my latest LeetCode achievements, providing a visual representation of my problem-solving journey.
+---
 
-### More Information
+## How This Works
 
-You can view more details of my LeetCode solutions on [LeetCode](https://leetcode.com/GiveMeAJob9/).
+1. A GitHub Actions workflow runs daily (and can be triggered manually).
+2. It fetches my LeetCode stats from a public API.
+3. The stats are used to generate dynamic **SVG** progress bars.
+4. This README is automatically updated with the latest data.
 
-Feel free to explore my GitHub repositories for more coding projects and solutions!
+## Example of the Progress Bar Images
 
+<p align="center">
+  <img src="images/total_solved.svg" width="300"/>
+  <img src="images/easy_solved.svg" width="300"/>
+  <img src="images/medium_solved.svg" width="300"/>
+  <img src="images/hard_solved.svg" width="300"/>
+</p>
 
+---
+
+## Contributing
+
+If you have any suggestions or encounter any issues, feel free to open an [issue](./issues) or submit a pull request. 
+
+## License
+
+This project is open-sourced under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+  <strong>Thank you for visiting!</strong>
+</div>
 
