@@ -1,45 +1,42 @@
 name: Update LeetCode Progress
-# 定时触发的时间设定，这里设定为每天的UTC 0点自动触发
 
 on:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:  # 添加手动触发
+  workflow_dispatch:
 
 jobs:
   update-progress:
-    runs-on: ubuntu-latest   # 选择运行环境
+    runs-on: ubuntu-latest
 
-      # Step 1: 检出代码仓库
     steps:
-      - name: Checkout repository 
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: 设置 Python 环境
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
 
-      # Step 3: 安装依赖
       - name: Install dependencies
         run: |
           pip install requests
 
-      # Step 4: 运行抓取 LeetCode 进度的脚本
       - name: Run LeetCode Progress Script
         run: |
-          python Leetcode_stats.py  # 确保路径正确
+          python Leetcode_stats.py
 
-      # Step 5: 提交并推送更新后的 README.md 文件
-      - name: Commit and push changes  # 添加 GitHub Token 以便推送权限
+      - name: Commit and push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 正确的 GitHub Token 使用方法
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # 创建 images 文件夹（如不存在）
+          mkdir -p images
+
           git config --global user.name 'GiveMeAjob-job'
           git config --global user.email 'binjob9@gmail.com'
-          git add . 
-          git add README.md
-          git commit -m "Update LeetCode progress"
+          git add .
+          # 如果不想触发后续重复 CI，可以在 commit message 中加上 [skip ci]
+          git commit -m "Update LeetCode progress [skip ci]" || echo "No changes to commit"
           git push
 
