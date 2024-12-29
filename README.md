@@ -15,7 +15,39 @@ Hello! I'm **GiveMeAJob9**, welcome to my LeetCode progress tracker. I solve cod
 ## Current Progress
 
 <!-- LEETCODE_STATS:START -->
-<!-- 这里的内容会被 LeetCode Stats 脚本自动替换 -->
+<table>
+<tr>
+  <th>Difficulty</th>
+  <th>Solved</th>
+  <th>Total</th>
+  <th>Progress</th>
+</tr>
+<tr>
+  <td>Easy</td>
+  <td>3</td>
+  <td>845</td>
+  <td><img src="./images/easy_solved.svg" width="200"/></td>
+</tr>
+<tr>
+  <td>Medium</td>
+  <td>3</td>
+  <td>1773</td>
+  <td><img src="./images/medium_solved.svg" width="200"/></td>
+</tr>
+<tr>
+  <td>Hard</td>
+  <td>0</td>
+  <td>783</td>
+  <td><img src="./images/hard_solved.svg" width="200"/></td>
+</tr>
+<tr>
+  <td><b>Total</b></td>
+  <td><b>6</b></td>
+  <td><b>3401</b></td>
+  <td><img src="./images/total_solved.svg" width="200"/></td>
+</tr>
+</table>
+
 <!-- LEETCODE_STATS:END -->
 
 > **Note**: The stats are updated automatically every day at **00:00 (UTC)** via GitHub Actions.
