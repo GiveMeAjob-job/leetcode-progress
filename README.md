@@ -31,7 +31,7 @@ Hello! I'm **GiveMeAJob9**, welcome to my LeetCode progress tracker. I solve cod
 <tr>
   <td>Medium</td>
   <td>3</td>
-  <td>1781</td>
+  <td>1782</td>
   <td><img src="./images/medium_solved.svg" width="200"/></td>
 </tr>
 <tr>
@@ -43,7 +43,7 @@ Hello! I'm **GiveMeAJob9**, welcome to my LeetCode progress tracker. I solve cod
 <tr>
   <td><b>Total</b></td>
   <td><b>6</b></td>
-  <td><b>3420</b></td>
+  <td><b>3421</b></td>
   <td><img src="./images/total_solved.svg" width="200"/></td>
 </tr>
 </table>
