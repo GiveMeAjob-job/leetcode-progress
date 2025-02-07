@@ -30,7 +30,7 @@ Hello! I'm **GiveMeAJob9**, welcome to my LeetCode progress tracker. I solve cod
 </tr>
 <tr>
   <td>Medium</td>
-  <td>5</td>
+  <td>6</td>
   <td>1793</td>
   <td><img src="./images/medium_solved.svg" width="200"/></td>
 </tr>
@@ -42,7 +42,7 @@ Hello! I'm **GiveMeAJob9**, welcome to my LeetCode progress tracker. I solve cod
 </tr>
 <tr>
   <td><b>Total</b></td>
-  <td><b>8</b></td>
+  <td><b>9</b></td>
   <td><b>3445</b></td>
   <td><img src="./images/total_solved.svg" width="200"/></td>
 </tr>
