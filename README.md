@@ -31,19 +31,19 @@ Hello! I'm **GiveMeAJob9**, welcome to my LeetCode progress tracker. I solve cod
 <tr>
   <td>Medium</td>
   <td>12</td>
-  <td>1793</td>
+  <td>1795</td>
   <td><img src="./images/medium_solved.svg" width="200"/></td>
 </tr>
 <tr>
   <td>Hard</td>
   <td>1</td>
-  <td>796</td>
+  <td>798</td>
   <td><img src="./images/hard_solved.svg" width="200"/></td>
 </tr>
 <tr>
   <td><b>Total</b></td>
   <td><b>20</b></td>
-  <td><b>3445</b></td>
+  <td><b>3449</b></td>
   <td><img src="./images/total_solved.svg" width="200"/></td>
 </tr>
 </table>

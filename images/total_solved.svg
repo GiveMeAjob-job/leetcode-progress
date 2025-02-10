@@ -20,5 +20,5 @@
     <rect x="0" y="15" width="1.74" height="20" rx="10" class="progress-bar"/>
     <!-- Text -->
     <text x="150" y="12" text-anchor="middle" font-size="12" fill="#333">Total Solved</text>
-    <text x="150" y="32" text-anchor="middle" font-size="12" fill="#000">20/3445 (0.58%)</text>
+    <text x="150" y="32" text-anchor="middle" font-size="12" fill="#000">20/3449 (0.58%)</text>
 </svg>
