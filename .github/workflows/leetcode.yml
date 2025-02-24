@@ -2,7 +2,13 @@ name: Update LeetCode Progress
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    # 纽约时间 00:00 (在冬令时是 UTC 05:00)
+    - cron: "0 5 * * *"
+    # 纽约时间 12:00 (在冬令时是 UTC 17:00)
+    - cron: "0 17 * * *"
+    # 纽约时间 18:00 (在冬令时是 UTC 23:00)
+    - cron: "0 23 * * *"
+
   workflow_dispatch:
 
 jobs:
