@@ -1,6 +1,7 @@
 import requests
 import os
 
+
 def get_leetcode_progress(username):
     """
     从 https://leetcode-stats-api.herokuapp.com/{username} 获取 LeetCode 统计信息。
@@ -14,15 +15,16 @@ def get_leetcode_progress(username):
         response.raise_for_status()
         data = response.json()
 
-        # 接口出错时，会返回 status = "error" 
+        # 接口出错时，会返回 status = "error"
         if data.get("status") == "error":
             print(f"[ERROR] LeetCode API: {data.get('message')}")
             return None
-        
+
         return data
     except requests.exceptions.RequestException as e:
         print(f"[ERROR] Error fetching data from LeetCode API: {e}")
         return None
+
 
 def generate_svg_progress_bar(solved, total, title, filename):
     """
@@ -35,7 +37,6 @@ def generate_svg_progress_bar(solved, total, title, filename):
     if total and total != 0:
         percentage = solved / total * 100
 
-    # 这里可以根据需要自定义渐变色或动画
     svg_content = f'''
 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="50">
     <defs>
@@ -56,7 +57,7 @@ def generate_svg_progress_bar(solved, total, title, filename):
     <!-- Background Bar -->
     <rect x="0" y="15" width="300" height="20" rx="10" fill="#ccc"/>
     <!-- Progress Bar -->
-    <rect x="0" y="15" width="{percentage*3:.2f}" height="20" rx="10" class="progress-bar"/>
+    <rect x="0" y="15" width="{percentage * 3:.2f}" height="20" rx="10" class="progress-bar"/>
     <!-- Text -->
     <text x="150" y="12" text-anchor="middle" font-size="12" fill="#333">{title}</text>
     <text x="150" y="32" text-anchor="middle" font-size="12" fill="#000">{solved}/{total} ({percentage:.2f}%)</text>
@@ -67,6 +68,7 @@ def generate_svg_progress_bar(solved, total, title, filename):
         f.write(svg_content)
 
     print(f"[INFO] SVG file '{filename}' generated -> {solved}/{total} ({percentage:.2f}%) for {title}")
+
 
 def update_readme(data):
     """
@@ -122,7 +124,6 @@ def update_readme(data):
     with open(readme_path, "r", encoding='utf-8') as f:
         readme_content = f.read()
 
-    # 占位符替换： <!-- LEETCODE_STATS:START --> 与 <!-- LEETCODE_STATS:END -->之间的内容全部替换
     start_marker = "<!-- LEETCODE_STATS:START -->"
     end_marker = "<!-- LEETCODE_STATS:END -->"
 
@@ -146,6 +147,21 @@ def update_readme(data):
 
     print("[INFO] README.md updated successfully.")
 
+
+# NEW: Discord 通知函数
+def post_to_discord(webhook_url, message):
+    """
+    使用 Discord Webhook 发送文本消息
+    """
+    try:
+        payload = {"content": message}
+        resp = requests.post(webhook_url, json=payload, timeout=10)
+        resp.raise_for_status()
+        print(f"[INFO] Successfully posted to Discord: {message}")
+    except requests.exceptions.RequestException as e:
+        print(f"[ERROR] Failed to post to Discord: {e}")
+
+
 if __name__ == "__main__":
     username = "GiveMeAJob9"  # 你的 LeetCode 用户名
     progress_data = get_leetcode_progress(username)
@@ -153,7 +169,19 @@ if __name__ == "__main__":
     if progress_data:
         update_readme(progress_data)
         print("[INFO] LeetCode data fetched and README updated.")
+
+        # NEW: 从环境变量获取 DISCORD_WEBHOOK
+        webhook_url = os.getenv("DISCORD_WEBHOOK", "").strip()
+        if webhook_url:
+            # 构造一个简单的提示消息，可以自己改成更详细的
+            msg = (
+                f"LeetCode用户 **{username}** 今日进度:\n"
+                f"已解决 **{progress_data['totalSolved']}** / {progress_data['totalQuestions']} 道题\n"
+                f"Easy: {progress_data['easySolved']}/{progress_data['totalEasy']}, "
+                f"Medium: {progress_data['mediumSolved']}/{progress_data['totalMedium']}, "
+                f"Hard: {progress_data['hardSolved']}/{progress_data['totalHard']} "
+            )
+            post_to_discord(webhook_url, msg)
+
     else:
         print("[ERROR] Failed to fetch LeetCode data. README not updated.")
-
-

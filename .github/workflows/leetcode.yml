@@ -25,6 +25,8 @@ jobs:
       - name: Run LeetCode Progress Script
         run: |
           python Leetcode_stats.py
+        env:
+          **DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}**
 
       - name: Commit and push changes
         env:
